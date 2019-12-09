@@ -1,0 +1,39 @@
+-- --------------------------------------------------
+-- 创建db20库、dept表、emp表并插入记录
+-- --------------------------------------------------
+-- 删除db20库(如果存在)
+drop database if exists db20;
+-- 重新创建db20库
+create database db20 charset utf8;
+-- 选择db20库
+use db20;
+-- 删除部门表, 如果存在
+drop table if exists dept;
+-- 重新创建部门表, 要求id, name字段
+create table dept(
+	id int primary key auto_increment,	-- 部门编号
+	name varchar(20)					-- 部门名称
+);
+-- 往部门表中插入记录
+insert into dept values(null, '财务部');
+insert into dept values(null, '人事部');
+insert into dept values(null, '科技部');
+insert into dept values(null, '销售部');
+
+-- 删除员工表, 如果存在
+drop table if exists emp;
+-- 创建员工表, 要求id, name, dept_id
+create table emp(
+	id int primary key auto_increment,	-- 员工编号
+	name varchar(20),					-- 员工姓名
+	dept_id int						-- 部门编号
+	-- ,foreign key(dept_id) references dept(id) -- 指定外键
+);
+insert into emp values(null, '张三', 1);
+insert into emp values(null, '李四', 2);
+insert into emp values(null, '老王', 3);
+insert into emp values(null, '赵六', 4);
+insert into emp values(null, '刘能', 4);
+
+
+

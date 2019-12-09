@@ -1,0 +1,17 @@
+-- 1、创建数据库jt_db数据库(如果不存在才创建)
+create database if not exists jt_db charset utf8;
+use jt_db; -- 选择jt_db数据库
+-- 2、在 jt_db 库中创建 stu 表(学生表)
+drop table if exists stu;
+create table stu(
+	stuid varchar(50),
+	name varchar(50),
+	gender char(2),
+	addr varchar(50),
+	score double
+);
+-- 3、往 stu 表中, 插入记录
+insert into stu values("1001",'张三','男', '北京', 86);
+
+
+

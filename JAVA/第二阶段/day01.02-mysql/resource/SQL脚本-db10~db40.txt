@@ -1,0 +1,176 @@
+-- -----------------------------------
+-- 创建db10库、emp表并插入记录
+-- -----------------------------------
+-- 删除db10库(如果存在)
+drop database if exists db10;
+-- 重新创建db10库
+create database db10 charset utf8;
+-- 选择db10库
+use db10;
+
+-- 删除员工表(如果存在)
+drop table if exists emp;
+-- 创建员工表
+create table emp(
+	id int primary key auto_increment,	-- 员工编号
+	name varchar(50),					-- 员工姓名
+	gender char(1),						-- 员工性别
+	birthday date,						-- 员工生日
+	dept varchar(50),					-- 所属部门
+	job varchar(50),					-- 所任职位
+	sal double,							-- 薪资
+	bonus double						-- 奖金
+);
+
+-- 往员工表中插入记录
+insert into emp values(null,'王海涛','男','1995-10-25','培优部','金牌讲师','1800','300');
+insert into emp values(null,'齐雷','男','1994-11-6','培优部','金牌讲师','2500','600');
+insert into emp values(null,'刘沛霞','女','1996-09-14','培优部','金牌讲师','1400','300');
+insert into emp values(null,'陈子枢','男','1991-05-18','培优部','部门总监','4200','500');
+insert into emp values(null,'刘昱江','男','1993-11-18','培优部','金牌讲师','1600','500');
+insert into emp values(null,'王克晶','女','1998-07-18','就业部','金牌讲师','3700','600');
+insert into emp values(null,'苍老师','男','1995-08-18','就业部','部门总监','4850','400');
+insert into emp values(null,'范传奇','男','1999-09-18','就业部','金牌讲师','3200','600');
+insert into emp values(null,'刘涛','男','1990-10-18','就业部','金牌讲师','2700','400');
+insert into emp values(null,'韩少云','男','1980-12-18',null,'CEO','5000',null);
+
+
+
+-- -----------------------------------
+-- 创建db20库、dept表、emp表并插入记录
+-- -----------------------------------
+-- 删除db20库(如果存在)
+drop database if exists db20;
+-- 重新创建db20库
+create database db20 charset utf8;
+-- 选择db20库
+use db20;
+
+-- 删除部门表, 如果存在
+drop table if exists dept;
+-- 重新创建部门表, 要求id, name字段
+create table dept(
+	id int primary key auto_increment,	-- 部门编号
+	name varchar(20)					-- 部门名称
+);
+-- 往部门表中插入记录
+insert into dept values(null, '财务部');
+insert into dept values(null, '人事部');
+insert into dept values(null, '科技部');
+insert into dept values(null, '销售部');
+
+-- 删除员工表, 如果存在
+drop table if exists emp;
+-- 创建员工表, 要求id, name, dept_id
+create table emp(
+	id int primary key auto_increment,	-- 员工编号
+	name varchar(20),					-- 员工姓名
+	dept_id int							-- 部门编号
+	-- ,foreign key(dept_id) references dept(id)
+);
+insert into emp values(null, '张三', 1);
+insert into emp values(null, '李四', 2);
+insert into emp values(null, '老王', 3);
+insert into emp values(null, '赵六', 4);
+insert into emp values(null, '刘能', 4);
+
+
+
+-- -----------------------------------
+-- 创建db30库、dept表、emp表并插入记录
+-- -----------------------------------
+
+-- 删除db30库(如果存在)
+drop database if exists db30;
+-- 重新创建db30库
+create database db30 charset utf8;
+-- 选择db30库
+use db30;
+
+-- 删除部门表, 如果存在
+drop table if exists dept;
+-- 重新创建部门表, 要求id, name字段
+create table dept(
+	id int primary key auto_increment,	-- 部门编号
+	name varchar(20)					-- 部门名称
+);
+-- 往部门表中插入记录
+insert into dept values(null, '财务部');
+insert into dept values(null, '人事部');
+insert into dept values(null, '科技部');
+insert into dept values(null, '销售部');
+
+-- 删除员工表, 如果存在
+drop table if exists emp;
+-- 创建员工表（员工编号、员工姓名、所在部门编号）
+create table emp(
+	id int primary key auto_increment,	-- 员工编号
+	name varchar(20),					-- 员工姓名
+	dept_id int							-- 部门编号
+);
+-- 往员工表中插入记录
+insert into emp values(null, '张三', 1);
+insert into emp values(null, '李四', 2);
+insert into emp values(null, '老王', 3);
+insert into emp values(null, '赵六', 5);
+
+
+
+-- -----------------------------------
+-- 创建db40库、dept表、emp表并插入记录
+-- -----------------------------------
+
+-- 删除db40库(如果存在)
+drop database if exists db40;
+-- 重新创建db40库
+create database db40 charset utf8;
+-- 选择db40库
+use db40;
+
+-- 创建部门表
+create table dept(				-- 创建部门表
+	id int primary key,			-- 部门编号
+	name varchar(50),			-- 部门名称
+	loc varchar(50)				-- 部门位置
+);
+
+-- 创建员工表
+create table emp(				-- 创建员工表
+	id int primary key,			-- 员工编号
+	name varchar(50),			-- 员工姓名
+	job varchar(50),			-- 职位
+	topid int,					-- 直属上级
+	hdate date,					-- 受雇日期
+	sal int,					-- 薪资
+	bonus int,					-- 奖金
+	dept_id int,				-- 所在部门编号
+	foreign key(dept_id) references dept(id)
+);
+
+-- 往部门表中插入记录
+insert into dept values ('10', '培优部', '北京');
+insert into dept values ('20', '就业部', '上海');
+insert into dept values ('30', '大数据部', '广州');
+insert into dept values ('40', '销售部', '深圳');
+
+-- 往员工表中插入记录
+insert into emp values ('1001', '王克晶', '办事员', '1007', '1980-12-17', '800', 500, '20');
+insert into emp values ('1003', '齐雷', '分析员', '1011', '1981-02-20', '1900', '300', '10');
+insert into emp values ('1005', '王海涛', '推销员', '1011', '1981-02-22', '2450', '600', '10');
+insert into emp values ('1007', '刘苍松', '经理', '1017', '1981-04-02', '3675', 700, '20');
+insert into emp values ('1009', '张慎政', '推销员', '1011', '1981-09-28', '1250', '1400', '10');
+insert into emp values ('1011', '陈子枢', '经理', '1017', '1981-05-01', '3450', 400, '10');
+insert into emp values ('1013', '张久军', '办事员', '1011', '1981-06-09', '1250', 800, '10');
+insert into emp values ('1015', '程祖红', '分析员', '1007', '1987-04-19', '3000', 1000, '20');
+insert into emp values ('1017', '韩少云', '董事长', null, '1981-11-17', '5000', null, null);
+insert into emp values ('1019', '刘沛霞', '推销员', '1011', '1981-09-08', '1500', 500, '10');
+insert into emp values ('1021', '范传奇', '办事员', '1007', '1987-05-23', '1100', 1000, '20');
+insert into emp values ('1023', '赵栋', '经理', '1017', '1981-12-03', '950', null, '30');
+insert into emp values ('1025', '朴乾', '分析员', '1023', '1981-12-03', '3000', 600, '30');
+insert into emp values ('1027', '叶尚青', '办事员', '1023', '1982-01-23', '1300', 400, '30');
+-- ------------------- 执行完毕 -----------------------
+
+
+
+
+

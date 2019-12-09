@@ -1,0 +1,89 @@
+=====================================
+ ** JDBC练习题(单选和多选)
+=====================================
+1、(单选)用户表user中存在一个字段username,查询名字包含"凤"用户？（B）
+	A.select * from user where username = '凤';
+	B.select * from user where username like '%凤%';
+	C.select * from user where username like '_凤_';
+	D.select * from user where username like '凤';
+2、(单选)使用Connection 的哪个方法可以建立一个PreparedStatement接口？（D）
+	A.createPrepareStatement()
+	B.preparedStatement() 
+	C.createPreparedStatement() 
+	D.prepareStatement()
+3、(单选)(单选)在Mysql数据库中，以下哪条语句用于统计test表中的记录总数？（D）
+	A.select sum(*) from test;
+	B.select max(*) from test;
+	C.select avg(*) from test;
+	D.select count(*) from test;
+4、(单选)下面的选项加载MySQL驱动正确的是哪一个？（D）
+	A.Class.forname("com.mysql.JdbcDriver");
+	B.Class.forname("com.mysql.driver.Driver");
+	C.Class.forname("com.mysql.jdbc.MySQLDriver");
+	B.Class.forname("com.mysql.jdbc.Driver");
+5、(单选)下面关于PreparedStatement的说法错误的是什么？（C）
+	A.PreparedStatement继承了Statement 
+	B.PreparedStatement可以有效的防止SQL注入 
+	C.PreparedStatement不能用于批量更新的操作 
+	D.PreparedStatement 采用预编译机制
+6、(单选)Stu为学生表,Class为班级表(其中banzhangid字段为外键,指向Stu表中的id),下列哪个选项可以查询出班级名称及对应的班长的姓名？（BD）
+stu:
+  +------+--------------+
+  | id   |	name 	|
+  +------+--------------+
+  | s01  |	张无忌	| 
+  +------+--------------+
+  | s02  |	韦小宝	| 
+  +------+--------------+
+  | s03  |	段誉	| 
+  +------+--------------+
+  | s04  |	杨过	| 
+  +------+--------------+
+class:		
+ +------+-------------+----------------+
+ | id	 | name   |banzhangid|
+ +------+-------------+---------------+
+ | 001   |向日葵班|  s01	 |
+ | 002   |玫瑰花班|  s02	 | 
+ | 003   |菊花班  |  s04	 |
+ +------+-------------+---------------+
+	A.Select class.name 班级,stu .name 班长 from class ,stu;
+	B.Select class.name 班级,stu .name 班长 from class ,stu where class.banzhangid=stu.id;
+	C.Select class.name 班级,stu .name 班长 from class inner join stu;
+	D.Select class.name 班级,stu .name 班长 from class inner join stu on class.banzhangid=stu.id;
+=====================================
+1、(多选)以下有关主键的表述正确的是？（ABCD）
+	A.主键约束的字段中的数据不能重复
+	B.主键约束的字段中的数据不能为null
+	C.可以声明多个列一起作为主键,称为联合主键
+	D.sql语句主键预留的关键为：primary key
+2、(多选)下面的描述正确的是什么？（ACD）
+	A.Statement的executeQuery()方法会返回一个结果集 
+	B.Statement的executeUpdate()方法会返回是否更新成功的boolean值 
+	C.使用ResultSet中的getString()可以获得一个对应于数据库中char类型的值 
+	D.ResultSet中的next()方法会使结果集中的下一行成为当前行
+3、(多选)在JDBC编程中执行完下列SQL语句SELECT name, age, gender FROM employee，能得到rs的第一列数据的代码是哪两个？（AD）
+	A.rs.getString(1); 
+	B.rs.getInt("name");
+	C.rs.getString(0); 
+	D.rs.getString("name");
+4、(多选)关于sql语句中的where和having的区别，以下说法不正确的是（AC）
+	A. where子句中可以使用所有的别名
+	B. where子句中不可以使用列别名，但是可以使用表别名
+	C. where子句中可以使用多行函数，例如count()、sum()、max()
+	D. having子句中可以使用列别名以及表别名
+	E. having子句中可以使用多行函数，例如count()、sum()、max()
+5、(多选)编写Jdbc程序的顺序为（DBECFA）
+	A.释放资源
+	B.获得与数据库的连接
+	C.执行sql命令
+	D.注册Jdbc Driver
+	E.创建不同类型的Statement
+	F.如果有结果集，则处理结果集
+=====================================
+
+
+
+
+
+
