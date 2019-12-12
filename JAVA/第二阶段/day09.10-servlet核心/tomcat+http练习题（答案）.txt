@@ -1,0 +1,55 @@
+=====================================
+ tomcat+http练习题
+=====================================
+1、(单选题)HTTP协议中规定了7种提交方式，其中最常用的两种为？（C）
+	A.HEAD、PUT
+	B.GET、PUT
+	C.POST、GET
+	D.POST、HEAD
+2、(单选题)安装tomcat成功后，要修改tomcat端口，要修改的文件是？（B）
+	A.tomcat/bin/startup.bat文件
+	B.tomcat/conf/server.xml
+	C.tomcat/conf/web.xml
+	D.tomcat/bin/server.xml
+3、(单选题)下列说法错误的是？（D）
+	A.如果不指定浏览器默认访问服务器的80端口
+	B.如果不指定默认tomcat监听8080端口
+	C.可以开启多个浏览器一同访问服务器80端口
+	D.可以开启多个tomcat监听8080端口
+4、(单选题)在tomcat发布web应用myweb，定义类cn.tedu.Hello.java，Hello.class应该被放置在哪个目录( ${CATALINA_HOME}即为tomcat安装目录)？（B）
+	A.${CATALINA_HOME}/webapps/myweb/WEB-INF/classes/Hello.class
+	B.${CATALINA_HOME}/webapps/myweb/WEB-INF/classes/cn/tedu/Hello.class
+	C.${CATALINA_HOME}/webapps/myweb/WEB-INF/classes/cn.tedu.Hello.class
+	D.${CATALINA_HOME}/webapps/myweb/WEB-INF/classes/cn.tedu/Hello.class
+5、(多选题)下列说法正确的是?（CDE）
+	A.通过${CATALINA_HOME}/bin/shutdown.bat可以启动tomcat服务器。
+	B.在${CATALINA_HOME}/webapps/myweb/WEB-INF/的html文件可以直接通过浏览器进行访问
+	C.在${CATALINA_HOME}/webapps/myweb/WEB-INF/web.xml文件中可以设置web应用的主页。
+	D.通过http://localhost:80/hello.html可以访问缺省web应用下的hello.html
+	E.将web应用打成war包，目的是将war包部署到tomcat服务器中后，服务器会自动解压war包，发布web应用。
+
+6、(多选题)一个用户安装了Tomcat，但无法启动Tomcat，可能是由于哪些原因引起的？（ABC）
+	A.没有安装JDK
+	B.Tomcat与JDK的版本不匹配，例如Tomcat6.x要求使用JDK1.5或以上版本
+	C.没有设置JAVA_HOME系统环境变量
+	D.没有安装浏览器
+7、(多选题)关于JavaWeb应用的目录结构，以下哪些说法正确？（CD）
+	A.JavaWeb应用的目录结构完全由开发人员自行决定
+	B.JavaWeb应用的JSP文件只能存放在Web应用的根目录下
+	C.web.xml文件存放在WEB-INF目录下
+	D.JavaWeb应用中的.class文件存放在WEB-INF/classes目录或其子目录下
+8、(多选题)一个标准的web应用目录结构应该包含下面哪些部分？（ABCD）
+	A.WEB-INF目录
+	B.WEB-INF/web.xml
+	C.WEB-INF/classes
+	D.WEB-INF/lib
+9、(多选题)下列说法正确的是？（AB）
+	A.一个tomcat可以配置多个虚拟主机
+	B.一个虚拟主机就是一个站点
+	C.一个虚拟主机中只能有一个web应用
+	D.一个web应用管理一个web资源
+10、(多选题)下列关于JavaWeb应用目录结构说法正确的是？（ABD）
+	A.WEB-INF下资源不能被浏览器直接访问
+	B.每个应用的web.xml 必须位于WEB-INF目录下
+	C.jar包可以放到WEB-INF下lib或者classes目录
+	D.jsp文件可以放入WEB-INF下
