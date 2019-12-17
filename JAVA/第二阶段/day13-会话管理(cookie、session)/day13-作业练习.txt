@@ -1,0 +1,50 @@
+----------------------------------------------------
+** cookie和session
+----------------------------------------------------
+1、向同桌描述Cookie保存数据的原理
+2、向同桌描述session保存数据的原理
+3、练习课上案例:使用cookie技术实现购物功能
+4、练习课上案例:使用session技术实现购物功能
+
+5、练习题
+1.从HTTP请求中，获得请求参数，应该调用：（ ）
+	A.request对象的getAttribute()方法
+	B.request对象的getParameter()方法
+	C.session对象的getAttribute()方法
+	D.session对象的getParameter()方法
+
+2.多选：关于下列描述错误的是：（ ）
+	A.request对象的getSession()方法每次调用都创建一个新的session对象
+	B.request对象的getSession()方法用于创建一个新的或者获取一个已存在的session对象
+	C.request对象的getSession(false)方法每次调用都创建一个新的session对象
+	D.request对象的getSession(false)方法用于获取一个已存在的session, 如果没有session, 将会返回null
+	提示：查资料了解getSession(boolean b)的用法
+
+3.多选：关于HttpSession的getAttibute()和setAttribute()方法，正确的说法是：（ ）
+	A.getAttributer()方法返回类型是String
+	B.getAttributer()方法返回类型是Object
+	C.setAttributer()方法保存数据时如果名字重复会抛出异常
+	D.setAttributer()方法保存数据时如果名字重复会覆盖以前的数据
+	
+4.多选：关于cookie和session，下列说法正确的是：（ ）
+	A.Cookie是将会话中产生的数据保存在客户端，是客户端的技术
+	B.Session是将会话中产生的数据保存在服务器端，是服务器端的技术
+	C.Cookie保存的信息的时间比较长，但是安全性不高，因此Cookie适合存放要保存时间较长，但安全性要求不高的信息
+	D.Session通常保存信息的时间比较有短，但较安全。因此session适合存放对安全性要求比较高，但不需要长时间保存的数据。
+	E.Cookie有个数和大小的限制，比如：有的浏览器限制一个站点给浏览器最多发送20个Cookie，一个cookie体积不超过4KB或1KB，但是session没有此限制，因此session可以毫无节制的使用。
+	
+
+（答案见下↓:）
+
+
+
+
+
+
+
+
+
+
+
+
+答案: 1：B	2：AC	3：BD	4：ABCD

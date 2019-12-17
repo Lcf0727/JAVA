@@ -1,0 +1,81 @@
+----------------------------------------------------
+** JSP练习题（默认为单选题）
+----------------------------------------------------
+1、关于下列说法正确的是？（C）
+	A.Servlet是Servlet，JSP是JSP，两者之间没有任何关系。
+	B.JSP每次被访问时, 都会被翻译成Servlet。
+	C.JSP只有在第一次被访问时(或者JSP被修改后)，才会被翻译为一个Servlet。
+	D.当浏览器请求服务器中的一个JSP，服务器是直接将这个JSP文件响应给浏览器。
+	E.JSP本质上是一个Servlet程序，因为两者的使用场景完全相同。
+	
+2、在JSP中书写以下哪段代码可以获取当前时间，并输出到网页上？（C）
+	A.<%= new Date(); %>
+	B.<% new Date(); %>
+	C.<%= new Date() %>
+	D.<% new Date() %>
+	E.以上都不对
+
+3、关于page指令下列描述不正确的是?（D）
+	A.<%@page ...%>指令的作用是用于声明当前JSP的属性信息，比如JSP使用的编码或者JSP使用的开发语言等
+	B.可以再一个JSP页面中声明多个<%@page ...%>指令
+	C.为了增强代码的可读性，建议将<%@page ...%>指令放在JSP页面的开头，但这不是必须的
+	D.除了import属性，其他<%@page ...%>指令中指定的属性只能出现一次。
+
+4、当用户请求jsp页面时，JSP引擎就会执行该页面的字节码文件响应客户的请求，执行字节码文件的结果是？（C）
+	A.发送一个JSP源文件到客户端 
+	B.发送一个Java文件到客户端
+	C.发送一个HTML页面到客户端
+	D.什么都不做。
+
+5、下列动态网页和静态网页的根本区别描述错误的是（D）。
+	A.静态网页服务器端返回的HTML文件是事先编写好的。
+	B.动态网页服务器端返回的HTML文件是程序生成的。
+	C.静态网页文件里只有HTML标记，没有后台程序代码。
+	D.动态网页中只有后台程序，不能有HTML代码。
+
+6、可以在以下哪个（  ）标记之间执行Java代码片段？（C）
+	A.<%= %>
+	B.<!-- -->
+	C.<% %>     
+	D.<%@ %>
+
+7、以下哪些注释，没有参与JSP的翻译过程？（C）
+	A.<!-- 这是一个注释 -->
+	B.<% //这是一个注释 %>
+	C.<%-- 这是一个注释 --%>
+	D.<% /* 这是一个注释 */ %>
+
+8、表达式 ${123>100 ? 123:100} 输出的结果是？（A）
+	A.123	
+	B.100
+	C.true
+	D.false
+9、在Servlet中代码如下:
+	public class Servlet1 extends HttpServlet{
+	    public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+	    	String name1 = "张三";
+			request.setAttribute("name", name1);
+			request.getRequestDispatcher("/test1.jsp").forward(request, response);
+		}
+	}
+	在test1.jsp中通过EL获取name属性值: ${ name1 }
+	当通过浏览器访问Servlet1后，下列描述正确的是？（B）
+	A.在test1.jsp中可以获取到name1的值为"张三";
+	B.在test1.jsp中获取不到到name1的值，不显示任何内容;
+	C.在test1.jsp中获取不到到name1的值，结果显示为null;
+	D.访问会出现500异常。
+
+10、多选：以下哪些属于JSP的指令？（ABD）
+	A.page
+	B.taglib
+	C.import
+	D.include
+	E.pageEncoding
+
+11、多选：下面关于JSTL描述正确的是？（BD）
+	A.JSTL是为了使用标签替代JSP中的JS代码
+	B.JSTL标签库是为JavaWeb开发人员提供的一套标准通用的标签库；
+	C.使用JSTL标签库中的标签，只需通过taglib指令引入，不需要引入相关jar包
+	D.JSTL标签库和EL配合使用取代JSP中大部分的Java代码；
+
+
