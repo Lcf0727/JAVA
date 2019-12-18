@@ -1,0 +1,21 @@
+-- 1、创建数据库 yonghedb 数据库
+create database if not exists yonghedb charset utf8;
+use yonghedb; -- 选择yonghedb数据库
+-- 2、删除emp表（如果存在）
+drop table if exists emp;
+-- 3、在 yonghedb 库中创建 emp 表
+create table emp(
+	id int primary key auto_increment,
+	name varchar(50),
+	job varchar(50),
+	salary double
+);
+-- 4、往 emp 表中, 插入若干条记录
+insert into emp values(null, '王海涛', '程序员', 3300);
+insert into emp values(null, '齐雷', '程序员', 2800);
+insert into emp values(null, '刘沛霞', '程序员鼓励师', 2700);
+insert into emp values(null, '陈子枢', '部门总监', 4200);
+insert into emp values(null, '刘昱江', '程序员', 3000);
+insert into emp values(null, '董长春', '程序员', 3500);
+insert into emp values(null, '苍老师', '程序员', 3700);
+insert into emp values(null, '韩少云', 'CEO', 5000);
