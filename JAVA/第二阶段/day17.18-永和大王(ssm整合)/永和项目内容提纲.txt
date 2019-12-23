@@ -1,0 +1,111 @@
+----------------------------------------
+** 永和大王项目大纲
+----------------------------------------
+一、项目环境搭建
+0、导入数据库、数据表、表记录
+1、创建Mavan的Web项目（yonghe-ssm）
+	补全WEB-INF目录和web.xml文件
+2、创建所需包和目录
+	com.tedu.controller
+	com.tedu.dao
+	com.tedu.pojo
+	src/main/resources
+		mybatis
+			mapper
+		spring
+	src/main/webapp/WEB-INF/pages/test.jsp
+3、导入junit、servlet/jsp/jstl、log4j等jar包
+4、在resources目录下创建log4j.properties文件
+二、整合SSM框架
+1、整合spring框架
+	导入spring框架的依赖(springmvc框架的依赖也导入了)
+	创建spring的核心配置文件--applicationContext.xml
+	
+2、整合springmvc框架
+	将day16-springmvc项目的springmvc环境直接拿过来使用!!!
+	将day16-springmvc项目中web.xml文件中的配置直接拿过来使用!!
+		<!-- 加载spring以及springmvc的配置文件 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/*.xml</param-value>
+		</init-param>
+3、整合mybatis框架
+	案例:查询门店表中的所有门店信息
+	在resources/mybatis/目录下创建mybatis-config.xml
+	在resources/mybatis/mapper/目录下创建DoorMapper.xml
+	在com.tedu.dao包下创建DoorMapper接口
+	在com.tedu.pojo包下创建Door实体类(用于封装门店信息)
+	创建一个测试类: com.tedu.test.TestMybatis
+4、整合mybatis和spring框架
+	将mybatis-config.xml文件中的配置移到spring的配置文件中
+		将SqlSessioniFactory注册为Bean
+		将DateSource注册为Bean
+		...
+	在spring的配置文件中(applicationContext.xml)配置如下内容:
+		(1)导入jdbc.properties文件
+		(2)将DruidDataSource类注册为Bean到spring容器中
+		(3)将SqlSessioniFactory类注册为Bean到spring容器中
+		(4)配置Mapper接口包扫描，将来由框架为mapper接口提供实现类,
+			并且由框架为Mapper接口提供子类实例,我们只需要获取创建
+			好的子类实例即可!!
+
+5、测试SSM开发环境
+	案例：查询所有门店信息
+	访问：localhost/yonghe-ssm/testssm
+	----------------------------
+	@RequestMapping("/testssm")
+	public String testssm(){
+		//获取DoorMapper接口的子类实例
+		//调用接口子类实例的findAll方法,查询所有门店
+	}
+	----------------------------
+6、导入JSP页面，并提供通用的页面跳转方法
+	/* 通用的页面跳转方法( 优先级最低 ) 
+	 * 如果浏览器访问服务器的路径为: /index
+	 * 	{}中的page变量的值就是 index
+	 * 在方法上声明一个同名的参数 page
+	 * 再通过@PathVariable注解接收{}中page变量的值
+	 * 传递给下面的方法, 赋值给方法上的page变量
+	 * 因此再访问jsp, 可以通过 "/jsp文件名" 来访问
+	 */
+	@RequestMapping("/{page}")
+	public String toPage(@PathVariable String page) {
+		return page;
+	}
+	
+三、门店模块功能实现
+1、查询所有门店信息
+	（1）入口：点击【门店管理】链接，访问的路径为：
+	localhost/yonghe-ssm/doorList
+	在Controller中提供一个方法,映射路径就是 [/doorList]
+	在这个路径下面的方法中,查询所有门店信息,将返回的List<Door>
+	存入到Model中,转发到 door_list.jsp.
+	在door_list.jsp页面中通过EL+JSTL将集合取出并显示到页面上
+	
+2、新增门店信息
+	（1）入口：点击【新增门店】链接，跳转到 door_add.jsp
+		localhost/yonghe-ssm/door_add
+	（2）填写新增的门店信息，点击提交，可以将填写的门店信息，随着请求一起发送给服务器。
+		表单的提交地址：/doorAdd
+	（3）在Controller中添加一个方法，映射路径就是：/doorAdd，接收请求中携带过来的门店信息，将门店信息通过dao，保存到数据库中。
+	
+3、根据id删除门店信息
+	（1）入口：点击门店信息后面的【删除】链接，可以将当前门店信息删除。
+		localhost/yonghe-ssm/doorDelete?id=xx
+	（2）在Controller中添加一个方法，映射路径就是：/doorDelete，接收请求中携带过来的门店id，调用dao的方法，根据id删除门店信息。
+
+4、根据id修改门店信息
+	（1）入口：点击【修改】链接，访问的地址为：
+		localhost/yonghe-ssm/doorInfo?id=1
+	（2）在Controller中添加一个方法，映射路径就是：/doorInfo，接收门店的id，根据id查询门店信息，将门店信息带到门店修改页面（door_update.jsp），进行数据的回显（显示在输入框中，基于原有信息进行修改）
+	（3）在原有门店信息的基础上修改门店信息，修改后，点击提交按钮，将表单中修改后的门店信息（包括id）提交到服务器
+	（4）在Controller方法中接收修改后的门店信息（包括id），根据id修改门店信息
+	点击[修改]--携带id--> doorInfo(根据id查询门店) --(携带门店信息)--> door_update.jsp(回显门店信息)
+	
+四、订单模块功能实现
+1、查询所有订单信息
+2、新增订单信息
+3、根据id删除订单信息
+4、根据id修改订单信息
+
+----------------------------------------
