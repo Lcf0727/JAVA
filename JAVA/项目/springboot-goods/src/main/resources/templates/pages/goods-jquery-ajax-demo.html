@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+        border-collapse: collapse;
+	}
+	table td,th{
+		border: 1px solid;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>Test Goods:JQuery Ajax demo</h1>
+	<fieldset>
+		<legend>Goods form</legend>
+		<form>
+			name:<input type="text" name="name"/>
+			remark:<input type="text" name="remark"/>
+			<input type="button" onclick="doSaveObject()" value="添加"/>
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>Goods List</legend>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>remark</th>
+					<th>createdTime</th>
+					<th>operation</th>
+				</tr>
+			</thead>
+			<tbody id="tbodyId">
+				<tr>
+					<td colspan="5">data loading...</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<!--script在上面的html元素加载完成之后执行-->
+	<script src="/js/ajax/jquery.min.js"></script>
+	<script>
+		var url="dofindGoods"
+		var params="id=1&name=A";
+		$.ajax({
+			url:url,
+			type:"POST",  //默认为GET
+			data:params,
+			dataType:"text",
+			async:true,  //默认为异步后执行
+			success:function(result){//回调函数，4&&200，成功后
+				console.log("ajax",result);
+			},
+			err:function(){}
+		});
+		//Get请求的ajax
+		$.get(url,params,function(result){
+			console.log("get",result);
+		},"json");  //json为默认格式
+		//Get请求的ajax,会将响应数据转换为json格式的js对象
+		$.getJSON(url,params,function(result){
+			console.log("getJSON",result);
+		});
+		//Post请求的ajax
+		$.post(url,params,function(result){
+			console.log("post",result);
+		});
+		
+	</script>
+</body>
+</html>
+
+
+

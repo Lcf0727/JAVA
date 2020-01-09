@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+        border-collapse: collapse;
+	}
+	table td,th{
+		border: 1px solid;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>Test Goods</h1>
+	<fieldset>
+		<legend>Goods form</legend>
+		<form action="doSaveObject">
+			id:<input type="text" name="id"/>
+			name:<input type="text" name="name"/>
+			remark:<input type="text" name="remark"/>
+			<input type="submit" value="添加"/>
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>Goods List</legend>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>remark</th>
+					<th>createdTime</th>
+					<th>operation</th>
+				</tr>
+			</thead>
+			<tr th:each="g,stat:${map.data}">
+				<td th:text="${g.id}"></td>
+				<td th:text="${g.name}"></td>
+				<td th:text="${g.remark}"></td>
+				<td th:text="${#dates.format(g.createdTime, 'yyyy/MM/dd HH:mm:ss')}"></td>
+				<td><a th:href="@{doDeleteById(id=${g.id})}" >delete</a></td>
+			</tr>
+		</table>
+	</fieldset>
+</body>
+</html>

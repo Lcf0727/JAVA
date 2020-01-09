@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+        border-collapse: collapse;
+	}
+	table td,th{
+		border: 1px solid;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>Test Goods</h1>
+	<fieldset>
+		<legend>Goods form</legend>
+		<form>
+			name:<input type="text" name="name"/>
+			remark:<input type="text" name="remark"/>
+			<input type="button" onclick="doSaveObject()" value="添加"/>
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>Goods List</legend>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>remark</th>
+					<th>createdTime</th>
+					<th>operation</th>
+				</tr>
+			</thead>
+			<tbody id="tbodyId">
+				<tr>
+					<td colspan="5">data loading...</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<!--script在上面的html元素加载完成之后执行-->
+	<script src="/js/ajax/ajax.js"></script>
+	<script type="text/javascript">
+		//处理服务端响应到客户端的json数据
+		function doHandleJsonResult(result){
+			//1.将json格式字符串转换成json格式的javascript对象
+			var jsonObj=JSON.parse(result);
+			//console.log("jsobObj",jsonObj);
+			//2.将jsonObj对象中的内容呈现在页面上
+			var trs="";
+			for(var i=0;i<jsonObj.length;i++){
+				trs+="<tr>"+
+					 "<td>"+(i+1)+"</td>"+
+					 "<td>"+jsonObj[i].name+"</td>"+
+					 "<td>"+jsonObj[i].remark+"</td>"+
+					 "<td>"+new Date(jsonObj[i].createdTime).toLocaleString()+"</td>"+
+					 "<td><input type='button' value='delete' onclick='doDeleteObject(id="+jsonObj[i].id+")'/></td>"
+					 "</tr>"
+			}
+			var tBody=document.getElementById("tbodyId");
+			tBody.innerHTML=trs;
+		}
+		//发送ajax请求获取商品，然后将数据更新到页面上
+		doAjaxGet("dofindGoods","",doHandleJsonResult);
+		//处理添加按钮事件
+		function doSaveObject(){
+			var url="doSaveGoods";
+			var id = document.forms[0].id.value;
+			var name = document.forms[0].name.value;
+			var remark = document.forms[0].remark.value;
+			var params = "name="+name+"&remark="+remark;
+			doAjaxPost(url,params,function(result){
+				alert(result);
+				doAjaxGet("dofindGoods","",doHandleJsonResult);
+			});
+		}
+		//处理删除按钮事件
+		function doDeleteObject(id){
+			var params = "id="+id
+			doAjaxGet("doDeleteGoods",params,function(result){
+				alert(result);
+				doAjaxGet("dofindGoods","",doHandleJsonResult);
+			})
+		}
+	</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+        border-collapse: collapse;
+	}
+	table td,th{
+		border: 1px solid;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<h1>Test Goods:JQuery Ajax</h1>
+	<fieldset>
+		<legend>Goods form</legend>
+		<form>
+			name:<input type="text" name="name"/>
+			remark:<input type="text" name="remark"/>
+			<input type="button" onclick="doSaveObject()" value="添加"/>
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>Goods List</legend>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>remark</th>
+					<th>createdTime</th>
+					<th>operation</th>
+				</tr>
+			</thead>
+			<tbody id="tbodyId">
+				<tr>
+					<td colspan="5">data loading...</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+	<script src="/js/ajax/jquery.min.js"></script>
+	<script>
+		doGetObjects()
+		//基于jquery中的ajax函数获取商品
+		function doGetObjects(){
+			//debugger
+			var url="dofindGoods";
+			$.getJSON(url,function(result){
+				doShowGoods(result);
+			})
+		}
+		//迭代result，并将goods信息呈现到页面上
+		function doShowGoods(result){
+			var trs="";
+			for(var i=0;i<result.length;i++){
+				trs+="<tr>"+
+					"<td>"+(i+1)+"</td>"+
+					"<td>"+result[i].name+"</td>"+
+					"<td>"+result[i].remark+"</td>"+
+					"<td>"+new Date(result[i].createdTime).toLocaleString()+"</td>"+
+					"<td><button onclick='doDeleteObject("
+							+result[i].id+")'>delete</button></td>"+
+					"</tr>";
+			}
+			$("#tbodyId").html(trs)
+		}
+		//jquery中的ajax添加商品
+		function doSaveObject(){
+			var url="doSaveGoods";
+			/* var name=$("input[name='name']").val();
+			var remark=$("input[name='remark']").val();
+			var params="name="+name+"&remark="+remark; */
+			var params=$("form").serialize();
+			$.post(url,params,function(result){
+				alert(result);
+				doGetObjects();
+			})
+		}
+		//jquery中的ajax删除商品
+		function doDeleteObject(id){
+			var url="doDeleteGoods";
+			var params="id="+id;
+			$.get(url,params,function(result){
+				alert(result);
+				doGetObjects();
+			})
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
